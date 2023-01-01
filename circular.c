@@ -1,41 +1,44 @@
 #include<stdio.h>
 #include<stdlib.h>
-int front =-1 , rear=-1 , MAX=3;
+int front =-1 , rear=-1 , max=5;
 void insert(int q[])
 {
 int e;
-printf("\nEnter the element to be inserted: ");
+printf("Enter the element to be inserted: ");
 scanf("%d",&e);
-if((front==-1)&&(rear==-1))
+if((front==0 && rear==max-1)||(rear==front-1))
 {
-q[++front]=e;
-rear++;
+  printf("Queue Overflow");
 }
-else if(((rear==MAX-1)&&(front == 0))||(front == rear+1))
+else if((front==-1)&&(rear==-1))
 {
-printf("\nOverflow\n");
+  front=0;
+  rear=0;
+  q[rear]=e;
 }
-else if((rear==MAX-1)&&(front!=0))
+else if(rear==max-1 && front!=0)
 {
-rear = 0;
-q[rear] = e;
+  rear=0;
+  q[rear]=e;
 }
 else
 {
-q[++rear]=e;
+  rear++;
+ q[rear]=e;
 }
 }
+
 void delete(int q[])
 {
 int e;
-if((rear==-1))
+if(rear==-1 && front==-1)
 {
-printf("\nUnderflow\n");
+printf("Queue Underflow\n");
 }
 else
 {
 e=q[front];
-printf("\nElement removed: %d",e);
+printf("Element removed: %d",e);
 if(front == rear)
 {
 front = -1;
@@ -44,7 +47,7 @@ rear = -1;
 }
 else
 {
-if(front==MAX-1)
+if(front==max-1)
 front=0;
 else
 front++;
@@ -55,21 +58,21 @@ front++;
 void display(int q[])
 {
 int i;
-if(front==-1)
-printf("\nQueue is empty\n");
+if(front==-1 && rear==-1)
+printf("Queue is empty\n");
 else
 {
-printf("\nQueue elements are: ");
-if((rear>=front)&&(rear<MAX))
+printf("Queue elements are: ");
+if(front<rear)
 {
 for(i=front;i<=rear;i++)
 printf("%d\t",q[i]);
 }
 else
 {
-for(i=front;i<=MAX-1;i++)
+for(i=front;i<max;i++)
 printf("%d\t",q[i]);
-for(i=0;i<front;i++)
+for(i=0;i<=rear;i++)
 printf("%d\t",q[i]);
 }
 }
@@ -80,7 +83,7 @@ int main()
 int q[100],choice,e;
 do
 {
-printf("\nEnter the choice.\n1. Insert\n2. Delete\n3. Display\n4. Exit\n");
+printf("\n\nMENU\n1. Insert\n2. Delete\n3. Display\n4. Exit\nEnter your choice: ");
 scanf("%d",&choice);
 switch(choice)
 {
@@ -88,7 +91,6 @@ case 1: insert(q);
 break;
 case 2: delete(q);
 break;
-
 case 3: display(q);
 break;
 case 4: printf("\nExiting the program!");
