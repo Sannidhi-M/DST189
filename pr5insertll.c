@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 struct node {
     int info;
     struct node* next;
@@ -9,7 +10,7 @@ struct node* head = NULL;
 void createlist()
 {
     int n;
-    printf("\nEnter the number of nodes: ");
+    printf("Enter the number of nodes: ");
     scanf("%d", &n);
     int data;
     struct node* newnode;
@@ -17,7 +18,7 @@ void createlist()
     newnode = malloc(sizeof(struct node));
     head = newnode;
     p = head;
-    printf("\nEnter number to be inserted : ");
+    printf("Enter number to be inserted : ");
     scanf("%d", &data);
     head ->info = data;
 
@@ -25,7 +26,7 @@ void createlist()
         {
         newnode = malloc(sizeof(struct node));
         p->next = newnode;
-        printf("\nEnter number to be inserted : ");
+        printf("Enter number to be inserted : ");
         scanf("%d", &data);
         newnode->info = data;
         p = p->next;
@@ -53,7 +54,7 @@ void insertatfront()
     int data;
     struct node* p;
     p = malloc(sizeof(struct node));
-    printf("\nEnter number to be inserted : ");
+    printf("Enter number to be inserted : ");
     scanf("%d", &data);
     p->next = head;
     head = p;
@@ -63,7 +64,7 @@ void insertatend()
     int data;
     struct node *p, *q;
     p = malloc(sizeof(struct node));
-    printf("\nEnter number to be inserted : ");
+    printf("Enter number to be inserted : ");
     scanf("%d", &data);
     p->next = NULL;
     p->info = data;
@@ -98,7 +99,7 @@ int main()
     int c;
     printf("1.Create\n2.Display\n3.Insert at front\n4.Insert at end\n5.Insert at any position\n6.Exit\n");
     do{
-    printf("Enter choice:");
+    printf("\nEnter choice:");
     scanf("%d",&c);
     switch(c)
     {
@@ -118,4 +119,3 @@ int main()
   }while(c>0);
   return 0;
 }
-
