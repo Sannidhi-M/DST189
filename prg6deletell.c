@@ -74,7 +74,7 @@ void deleteatpos()
 {
     struct node *p,*q;
     int pos;
-    printf("Enter data point of the node to be deleted:");
+    printf("Enter data of the node to be deleted:");
     scanf("%d",&pos);
     q=head;
     while(q->info!=pos)
